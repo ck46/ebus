@@ -1,3 +1,15 @@
+* General tasks
+
+** DONE create store module
+   CLOSED: [2021-01-24 Sun 22:11]
+
+** TODO create seeding for store module
+
+** TODO create mechant module
+
+** TODO create buyer module
+
+** TODO create payment module
 
 * User Functions
 

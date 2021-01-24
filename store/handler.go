@@ -3,17 +3,42 @@ package store
 import "github.com/jinzhu/gorm"
 
 func MakeItem(db *gorm.DB, req *Request) (*Response, error) {
-	catalog := &Item{
-		Description:   req.Description,
-		Store:         *req.Store,
-		StoreQuantity: req.Quantity,
-		Price:         req.Price,
+	var categories []*Category
+	for i := 0; i < len(req.Categories); i++ {
+		category, err := FindCategoryByName(db, req.Categories[i])
+		if err == nil {
+			categories = append(categories, category)
+		}
 	}
-	id, err := CreateItem(db, catalog)
+	store, err := FindStoreByName(db, req.StoreName)
+	if err != nil {
+		return nil, err
+	}
+	item := &Item{
+		Name:        req.Name,
+		Description: req.Description,
+		Store:       *store,
+		Stock:       req.Quantity,
+		Price:       req.Price,
+		Categories:  categories,
+	}
+	id, err := CreateItem(db, item)
 	if err != nil {
 		return nil, err
 	}
 	return &Response{Id: id}, err
+}
+
+func MakeItemImages(db *gorm.DB, req *Request) (*Response, error) {
+	item, err := FindItemByName(db, req.Name)
+	if err != nil {
+		return nil, err
+	}
+	for i := 0; i < len(req.Images); i++ {
+		_, _ = MakeImage(db, &Request{Item: item, S3link: req.Images[i]})
+	}
+
+	return &Response{Item: item}, nil
 }
 
 func MakeStore(db *gorm.DB, req *Request) (*Response, error) {
@@ -54,8 +79,17 @@ func MakeCategory(db *gorm.DB, req *Request) (*Response, error) {
 }
 
 func MakeDepartment(db *gorm.DB, req *Request) (*Response, error) {
+	var categories []*Category
+	for i := 0; i < len(req.Categories); i++ {
+		category, err := FindCategoryByName(db, req.Categories[i])
+		if err == nil {
+			categories = append(categories, category)
+		}
+	}
+
 	department := &Department{
 		Category: *req.Category,
+		Children: categories,
 	}
 
 	id, err := CreateDepartment(db, department)

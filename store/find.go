@@ -13,9 +13,27 @@ func FindStoreByID(db *gorm.DB, id uint) (*Store, error) {
 	return &store, nil
 }
 
+func FindStoreByName(db *gorm.DB, name string) (*Store, error) {
+	var store Store
+	res := db.Where("name = ?", name).Find(&store)
+	if res.RecordNotFound() {
+		return nil, &StoreNotExistError{}
+	}
+	return &store, nil
+}
+
 func FindItemByID(db *gorm.DB, id uint) (*Item, error) {
 	var item Item
 	res := db.Preload("Images").Preload("Categories").Preload("Store").Find(&item, id)
+	if res.RecordNotFound() {
+		return nil, &ItemNotExistError{}
+	}
+	return &item, nil
+}
+
+func FindItemByName(db *gorm.DB, name string) (*Item, error) {
+	var item Item
+	res := db.Where("name = ?", name).Find(&item)
 	if res.RecordNotFound() {
 		return nil, &ItemNotExistError{}
 	}
@@ -74,4 +92,12 @@ func FindDepartmentByCategory(db *gorm.DB, category *Category) (*Department, err
 		return nil, &DepartmentNotExistError{}
 	}
 	return &department, nil
+}
+
+func FindDepartmentByName(db *gorm.DB, name string) (*Department, error) {
+	category, err := FindCategoryByName(db, name)
+	if err != nil {
+		return nil, &DepartmentNotExistError{}
+	}
+	return FindDepartmentByCategory(db, category)
 }
