@@ -30,6 +30,7 @@ func router() *mux.Router {
 	r.HandleFunc("/api/departments", api.GetDepartments).Methods("GET", "OPTIONS")
 	r.HandleFunc("/api/department/categories", api.GetDepartmentCategories).Methods("GET", "OPTIONS")
 	r.HandleFunc("/api/category", api.GetCategoryItems).Methods("GET", "OPTIONS")
+	r.HandleFunc("/api/item", api.GetItem).Methods("GET", "OPTIONS")
 
 	return r
 }
