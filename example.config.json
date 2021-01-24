@@ -1,0 +1,18 @@
+{
+    "host": "localhost",
+    "port": "8080",
+    "test-db":{
+        "host":"test-host-server",
+        "user":"test-user",
+        "password":"test-password",
+        "dbname":"test-dbnam"
+    },
+    "live-db":{
+        "host":"live-host-server",
+        "user":"live-user",
+        "password":"live-password",
+        "dbname":"live-dbname"
+    },
+    "deployment":"test",
+    "s3-host":"amazon-s3-bucket-link"
+}
