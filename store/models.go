@@ -25,13 +25,6 @@ type Store struct {
 	Description string
 }
 
-type CartItem struct {
-	gorm.Model
-	ItemID   uint
-	Item     Item
-	Quantity int
-}
-
 type Category struct {
 	gorm.Model
 	Name        string `gorm:"not null; unique"`
