@@ -101,3 +101,12 @@ func FindDepartmentByName(db *gorm.DB, name string) (*Department, error) {
 	}
 	return FindDepartmentByCategory(db, category)
 }
+
+func GetAllDepartments(db *gorm.DB) []*Department {
+	var departments []*Department
+	res := db.Find(&departments)
+	if res.RecordNotFound() {
+		return nil
+	}
+	return departments
+}

@@ -28,11 +28,14 @@ type ErrorResponse struct {
 }
 
 type Item struct {
-	ID         uint
-	Title      string
-	StoreName  string
-	PromoImage string
-	Images     []string
+	ID          uint     `json:"item_id"`
+	Name        string   `json:"item_name"`
+	StoreName   string   `json:"store_name"`
+	PromoImage  string   `json:"default_image"`
+	Images      []string `json:"images"`
+	Description string   `json:"description"`
+	Price       float64  `json:"price"`
+	Stock       uint     `json:"stock"`
 }
 
 type Store struct {

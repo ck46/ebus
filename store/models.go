@@ -14,7 +14,7 @@ type Item struct {
 	Categories  []*Category `gorm:"many2many:item_categories"`
 	Description string
 	Stock       uint
-	Price       float32
+	Price       float64
 }
 
 type Store struct {
@@ -62,7 +62,7 @@ type Request struct {
 	S3link      string
 	ImageUrl    string
 	Item        *Item
-	Price       float32
+	Price       float64
 	Quantity    uint
 	Category    *Category
 	Department  *Department

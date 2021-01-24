@@ -27,5 +27,9 @@ func router() *mux.Router {
 	r.HandleFunc("/api/login", api.Login).Methods("POST", "OPTIONS")
 	r.HandleFunc("/api/signup", api.Signup).Methods("POST", "OPTIONS")
 
+	r.HandleFunc("/api/departments", api.GetDepartments).Methods("GET", "OPTIONS")
+	r.HandleFunc("/api/department/categories", api.GetDepartmentCategories).Methods("GET", "OPTIONS")
+	r.HandleFunc("/api/category", api.GetCategoryItems).Methods("GET", "OPTIONS")
+
 	return r
 }

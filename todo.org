@@ -3,13 +3,15 @@
 ** DONE create store module
    CLOSED: [2021-01-24 Sun 22:11]
 
-** TODO create seeding for store module
+** DONE create seeding for store module
+   CLOSED: [2021-01-25 Mon 01:14]
 
 ** TODO create mechant module
 
 ** TODO create buyer module
 
 ** TODO create payment module
+
 
 * User Functions
 
@@ -19,11 +21,16 @@
 ** DONE user login
    CLOSED: [2021-01-24 Sun 21:13]
 
-** TODO get categories
+** DONE get categories
+   CLOSED: [2021-01-25 Mon 05:53]
 
 ** TODO search items
 
-** TODO get items by category
+** DONE Get departments
+   CLOSED: [2021-01-25 Mon 05:54]
+
+** DONE get items by category
+   CLOSED: [2021-01-25 Mon 05:53]
 
 ** TODO get item details
 

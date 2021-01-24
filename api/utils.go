@@ -7,6 +7,7 @@ import (
 	"path"
 	"strings"
 
+	"github.com/ck46/ebus/store"
 	"github.com/ck46/ebus/user"
 	"github.com/ck46/ebus/utils"
 
@@ -84,4 +85,21 @@ func TestEndpoint(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	json.NewEncoder(w).Encode(res)
+}
+
+func StoreItemToAPIItem(item *store.Item) *Item {
+	var images []string
+	for i := 0; i < len(item.Images); i++ {
+		images = append(images, item.Images[i].S3link)
+	}
+	return &Item{
+		ID:          item.ID,
+		Name:        item.Name,
+		Description: item.Description,
+		StoreName:   item.Store.Name,
+		PromoImage:  item.PromoImage,
+		Price:       item.Price,
+		Stock:       item.Stock,
+		Images:      images,
+	}
 }
