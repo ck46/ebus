@@ -1,0 +1,42 @@
+
+* User Functions
+
+** DONE user registration
+   CLOSED: [2021-01-24 Sun 21:13]
+
+** DONE user login
+   CLOSED: [2021-01-24 Sun 21:13]
+
+** TODO get categories
+
+** TODO search items
+
+** TODO get items by category
+
+** TODO get item details
+
+** TODO add items to cart
+
+** TODO update cart
+
+** TODO checkout
+
+** TODO verify payment
+
+** TODO Get orders
+
+** TODO Get order details
+
+
+* Merchant functions
+
+** TODO Merchant Registration
+
+** TODO Merchant login
+
+
+* Admin functions
+
+** TODO Approve merchant
+
+** TODO Suspend merchant
